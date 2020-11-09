@@ -8,8 +8,8 @@ public class Human implements Run, Jump {
     int limitLen;
 
     public Human (){
-        this.limitHeight = random.nextInt(1) + 1;
-        this.limitLen = random.nextInt(950) + 50;
+        this.limitHeight = random.nextInt(2) + 1;
+        this.limitLen = random.nextInt(950);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class Human implements Run, Jump {
             System.out.println("Human jump");
             return true;
         }
+        System.out.println("These people are soft");
         return false;
     }
 
@@ -27,6 +28,7 @@ public class Human implements Run, Jump {
             System.out.println("Human run");
             return true;
         }
+        System.out.println("These people are soft");
         return false;
     }
 

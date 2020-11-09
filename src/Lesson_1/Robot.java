@@ -8,8 +8,8 @@ public class Robot implements Run, Jump {
     int limitLen;
 
     public Robot (){
-        this.limitHeight = random.nextInt(15) + 5;
-        this.limitLen = random.nextInt(1500) + 500;
+        this.limitHeight = random.nextInt(15);
+        this.limitLen = random.nextInt(1500);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class Robot implements Run, Jump {
             System.out.println("Robot jump");
             return true;
         }
+        System.out.println("The robot is broken");
         return false;
     }
 
@@ -27,6 +28,7 @@ public class Robot implements Run, Jump {
             System.out.println("Robot run");
             return true;
         }
+        System.out.println("The robot is broken");
         return false;
     }
 

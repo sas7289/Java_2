@@ -26,6 +26,7 @@ public class Main {
                 }
             }
             if (win) {
+                System.out.println("These " + member + " won");
                 winners.add(member);
             }
         }

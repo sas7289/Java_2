@@ -8,8 +8,8 @@ public class Cat implements Run, Jump{
     int limitLen;
 
     public Cat (){
-        this.limitHeight = random.nextInt(5) + 1;
-        this.limitLen = random.nextInt(650) + 50;
+        this.limitHeight = random.nextInt(5);
+        this.limitLen = random.nextInt(650);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class Cat implements Run, Jump{
             System.out.println("Cat jump");
             return true;
         }
+        System.out.println("These cat are soft");
         return false;
     }
 
@@ -27,6 +28,7 @@ public class Cat implements Run, Jump{
             System.out.println("Cat run");
             return true;
         }
+        System.out.println("These сat are soft");
         return false;
     }
 
