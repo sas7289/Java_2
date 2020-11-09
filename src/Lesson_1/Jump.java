@@ -2,5 +2,5 @@ package Lesson_1;
 
 public interface Jump {
 
-    public void jump();
+    public boolean jump(int currentHeight);
 }

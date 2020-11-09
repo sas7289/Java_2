@@ -2,17 +2,22 @@ package Lesson_1;
 
 import java.util.Random;
 
-public class Treadmill extends Barrier {
+public class Treadmill {
     Random random = new Random();
-    int lenght;
+    int currentLen;
 
     public Treadmill(){
-        this.lenght = random.nextInt(95) + 5;
+        this.currentLen = random.nextInt(95) + 5;
     }
 
-    public void attemptToJump (Jump jumping){
 
+    public boolean attemptToRun (Run running){
+        if (running.run(currentLen)){
+            return true;
+        }
+        return false;
     }
+
 
 
 }

@@ -5,20 +5,33 @@ import java.util.Random;
 public class Robot implements Run, Jump {
     Random random = new Random();
     int limitHeight;
-    int limitLenght;
+    int limitLen;
 
     public Robot (){
-        this.limitHeight = random.nextInt(5) + 15;
-        this.limitLenght = random.nextInt(500) + 1500;
+        this.limitHeight = random.nextInt(15) + 5;
+        this.limitLen = random.nextInt(1500) + 500;
     }
 
     @Override
-    public void jump() {
-
+    public boolean jump(int currentHeight) {
+        if (currentHeight < limitHeight) {
+            System.out.println("Robot jump");
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void run() {
+    public boolean run(int currentLen) {
+        if (currentLen < limitLen) {
+            System.out.println("Robot run");
+            return true;
+        }
+        return false;
+    }
 
+    @Override
+    public String toString() {
+        return "Robot";
     }
 }

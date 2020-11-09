@@ -5,20 +5,33 @@ import java.util.Random;
 public class Human implements Run, Jump {
     Random random = new Random();
     int limitHeight;
-    int limitLenght;
+    int limitLen;
 
     public Human (){
         this.limitHeight = random.nextInt(1) + 1;
-        this.limitLenght = random.nextInt(950) + 50;
+        this.limitLen = random.nextInt(950) + 50;
     }
 
     @Override
-    public void jump() {
-
+    public boolean jump(int currentHeight) {
+        if (currentHeight < limitHeight) {
+            System.out.println("Human jump");
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void run() {
+    public boolean run(int currentLen) {
+        if (currentLen < limitLen) {
+            System.out.println("Human run");
+            return true;
+        }
+        return false;
+    }
 
+    @Override
+    public String toString() {
+        return "Human";
     }
 }

@@ -2,5 +2,5 @@ package Lesson_1;
 
 public interface Run {
 
-    public void run();
+    public boolean run(int currentLen);
 }

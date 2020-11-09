@@ -2,11 +2,18 @@ package Lesson_1;
 
 import java.util.Random;
 
-public class Wall extends Barrier {
+public class Wall {
     Random random = new Random();
-    int height;
+    int currentHeight;
 
     public Wall(){
-        this.height = random.nextInt(9) +1;
+        this.currentHeight = random.nextInt(2);
+    }
+
+    public boolean attemptToJump (Jump jumping){
+        if (jumping.jump(currentHeight)){
+            return true;
+        }
+        return false;
     }
 }
