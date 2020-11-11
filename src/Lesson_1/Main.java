@@ -5,25 +5,21 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Object[] barriers = new Object[]{new Wall(), new Treadmill(), new Wall(), new Treadmill(), new Wall(), new Treadmill()};
-        Object[] members = new Jump[]{new Human(), new Human(), new Human(), new Human(), new Cat(),
+        OvercomeObstacles[] obstacles = new OvercomeObstacles[]{new Wall(), new Treadmill(), new Wall(), new Treadmill(), new Wall(), new Treadmill()};
+        Member[] members = new Member[]{new Human(), new Human(), new Human(), new Human(), new Cat(),
                 new Cat(),new Cat(),new Cat(), new Robot(),new Robot(),new Robot(),new Robot()};
-        ArrayList <Object> winners = new ArrayList<Object>();
+        ArrayList <Member> winners = new ArrayList<Member>();
         boolean win = false;
-        for (Object member : members) {
-            for (Object barrier : barriers) {
-                if (barrier instanceof Wall){
-                    if (!((Wall) barrier).attemptToJump((Jump)member)){
+        for (Member member : members) {
+            for (OvercomeObstacles obstacle : obstacles) {
+                    if (!obstacle.overcome(member)){
                         win = false;
                         break;
                     }
-                }
-                else {
-                    if (!((Treadmill) barrier).attemptToRun((Run)member)){
+                    if (!obstacle.overcome(member)){
                         break;
                     }
                     win = true;
-                }
             }
             if (win) {
                 System.out.println("These " + member + " won");

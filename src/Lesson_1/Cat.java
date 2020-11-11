@@ -2,7 +2,7 @@ package Lesson_1;
 
 import java.util.Random;
 
-public class Cat implements Run, Jump{
+public class Cat implements Member{
     Random random = new Random();
     int limitHeight;
     int limitLen;
