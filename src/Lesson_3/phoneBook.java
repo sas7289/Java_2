@@ -14,9 +14,9 @@ public class phoneBook {
         phoneBook.put(name, new ArrayList<String>(Arrays.<String>asList(numbers)));
     }
 
-    public ArrayList<String> get (String name){
+    public ArrayList<String> get (String name) throws NullNumbers{
         if (!phoneBook.containsKey(name)){
-            System.out.println("Данный контакт отсутствует или неправильно набран");
+            throw new NullNumbers(name);
         }
         return phoneBook.get(name);
     }
