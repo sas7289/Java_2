@@ -16,6 +16,20 @@ public class Main {
                 findOriginal.put(arr[i], findOriginal.get(arr[i]) + 1);
             }
         }
+        phoneBook phoneBook = new phoneBook();
+        phoneBook.add("Котовский", "899911556", "1111111", "33131113");
+        phoneBook.add("Собакевич", "123");
+        ArrayList<String> temp = phoneBook.get("Котовский");
+        ArrayList<String> temp2 = phoneBook.get("Овечкин");
+
+
+
+        for (int i = 0; i < 3; i++) {
+            phoneBook.add();
+        }
+        for (int i = 0; i < 3; i++) {
+            phoneBook.get();
+        }
     }
 }
 
