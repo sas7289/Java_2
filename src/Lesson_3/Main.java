@@ -6,9 +6,12 @@ public class Main {
     public static void main(String[] args) {
 
 
-        String[] arr = {"GitHub", "GitLab", "Opera", "Firefox", "Ubuntu", "FreeBSD", "Git", "GitLab", "KaliLinux",
-        "Windows NT", "Windows Millennium", "Android", "Symbian OS"};
+        String[] arr = {"GitHub", "GitLab", "Windows NT", "Firefox", "Ubuntu", "FreeBSD", "Git", "GitLab", "KaliLinux",
+        "Windows NT", "Windows Millennium", "Windows NT", "Symbian OS"};
         Map <String, Integer> result = CountString.calcCount(arr);
+        for (String s : result.keySet()) {
+            System.out.println(s);
+        }
 
 
 
