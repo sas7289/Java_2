@@ -40,20 +40,31 @@ public void setPrimaryStage(Stage primaryStage){
 
     public void addMessage(){
         Text message = new Text(textField.getText());
+//        message.setStrokeWidth(primaryStage.getWidth());
         message.setWrappingWidth(primaryStage.getWidth());
         if (message.getText().isBlank()){
-            textField.clear();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Ошибка ввода");
-            alert.setContentText("Нельзя отправлять пустое сообщение");
-            alert.showAndWait();
+            showIOError();
         } else {
             chatWindow.getItems().add(message);
             textField.clear();
         }
     }
 
+    public void showAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("О приложении");
+        alert.setHeaderText("Messenger");
+        alert.setContentText("Клиентская часть чата");
+        alert.showAndWait();
+    }
 
+    private void showIOError() {
+        textField.clear();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка ввода");
+        alert.setContentText("Нельзя отправлять пустое сообщение");
+        alert.showAndWait();
+    }
 
 
 }
