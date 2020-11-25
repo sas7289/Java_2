@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Main {
     static final int SIZE = 10000000;
     static final int H = SIZE / 2;
+    static final int DEFAULT_ARR_VAL = 1;
 
     public static void main(String[] args) {
         fullArr();
@@ -14,7 +15,7 @@ public class Main {
 
     public static void fullArr() {
         float[] arr = new float[SIZE];
-        Arrays.fill(arr, 1);
+        Arrays.fill(arr, DEFAULT_ARR_VAL);
         long a = System.currentTimeMillis();
         for (int i = 0; i < SIZE; i++) {
             arr[i] = calcVal(arr[i], i);
@@ -26,7 +27,7 @@ public class Main {
         long begin = System.currentTimeMillis();
 
         float[] arr = new float[SIZE];
-        Arrays.fill(arr, 1);
+        Arrays.fill(arr, DEFAULT_ARR_VAL);
         float[] arrFirstHalf = new float[H];
         float[] arrSecondHalf = new float[H];
 
