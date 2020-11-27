@@ -52,7 +52,7 @@ public class Main {
         Thread secondHalfThread = new Thread(() -> {
             long c = System.currentTimeMillis();
             for (int i = 0; i < arrSecondHalf.length; i++) {
-                arrSecondHalf[i] = calcVal(arrSecondHalf[i], i);
+                arrSecondHalf[i] = calcVal(arrSecondHalf[i], i + H);
             }
             System.out.println("time for calculating the second half: " + (System.currentTimeMillis() - c));
             c = System.currentTimeMillis();
