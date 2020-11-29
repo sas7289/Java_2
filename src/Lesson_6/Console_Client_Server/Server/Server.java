@@ -1,5 +1,7 @@
 package Lesson_6.Console_Client_Server.Server;
 
+import Lesson_6.Console_Client_Server.ThreadIO.*;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,101 +9,59 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Server /*implements *//*Runnable*//* */{
-    protected boolean suspendFlag = true;
+public class Server {
     Scanner scanner;
 
-    private static int server_port = 8189;
+    private static int server_port;
 
-//    protected Thread thread;
     private ServerSocket serverSocket;
     protected static DataOutputStream dataOutputStream;
     protected static DataInputStream dataInputStream;
 
-    protected Server(ServerSocket serverSocket) {
-        scanner = new Scanner(System.in);
-        this.serverSocket = serverSocket;
-//        thread = new Thread(this);
-//        thread.run();
+    private final int SERVER_PORT = 8189;
+
+    public Server() {
+        server_port = SERVER_PORT;
+        try {
+            serverSocket = new ServerSocket(server_port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected Server getThisServer() {
-        return this;
+    public Server(int serverPort) {
+        server_port = serverPort;
+        try {
+            serverSocket = new ServerSocket(server_port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void start() {
         try {
-            System.out.println("Ожидание подключения...");
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Подключение установлено");
-            dataInputStream = new DataInputStream(clientSocket.getInputStream());
-            dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+            connect();
         } catch (IOException e) {
+            System.out.println("Ошибка передачи данных");
             e.printStackTrace();
         }
-        Thread tRead = new Thread(() -> readMessage());
-        Thread rSend = new Thread(() -> sendMessage());
-        tRead.start();
-        rSend.start();
+        Thread threadO = new Thread(new ThreadOut(dataOutputStream));
+        Thread threadI = new Thread(new ThreadIn(dataInputStream));
+        threadO.start();
+        threadI.start();
     }
 
-    public void readMessage() {
-        while (true) {
-            try {
-                String message = dataInputStream.readUTF();
-                /*synchronized (this) */{
-                    System.out.println(message);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private void connect() throws IOException {
+        System.out.println("Ожидание подключения...");
+        Socket clientSocket = serverSocket.accept();
+        System.out.println("Подключение установлено");
+        dataInputStream = new DataInputStream(clientSocket.getInputStream());
+        dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
     }
 
 
-    /*synchronized*/
-    public void sendMessage() {
-        while (true) {
-            String message;
-            /*synchronized (this) */{
-                message = scanner.nextLine();
-            }
-            try {
-                dataOutputStream.writeUTF(message);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
 
-    /*public void readMessage() {
-        new Thread(() -> {
-            synchronized (this) {
-                while (true) {
-                    try {
-                        String message = dataInputStream.readUTF();
-                        System.out.println(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).run();
-    }
-    *//*synchronized*//* public void sendMessage() {
-        new Thread(() -> {
-            synchronized (this) {
-                while (true) {
-                    String message = scanner.nextLine();
-                    try {
-                        dataOutputStream.writeUTF(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).run();
-    }*/
+
 
