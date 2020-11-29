@@ -10,8 +10,11 @@ import java.util.Scanner;
 
 public class Client {
     private Scanner scanner = new Scanner(System.in);
+    Socket socket;
+/*
     private static DataInputStream dataInputStream;
     private static DataOutputStream dataOutputStream;
+*/
 
 
 
@@ -30,17 +33,14 @@ public class Client {
     }
 
     private void connect(String host, int port) throws IOException {
-        Socket tempSocket = new Socket(host, port);
-        System.out.println("Подключение установлено");
+        socket = new Socket(host, port);
+        System.out.println("Подключение установлено");/*
         dataInputStream = new DataInputStream(tempSocket.getInputStream());
-        dataOutputStream = new DataOutputStream(tempSocket.getOutputStream());
+        dataOutputStream = new DataOutputStream(tempSocket.getOutputStream());*/
     }
 
     public void start() {
-        Thread tRead = new Thread(new ThreadIn(dataInputStream));
-        Thread rSend = new Thread(new ThreadOut(dataOutputStream));
-        tRead.start();
-        rSend.start();
+        new ThreadIO(socket);
     }
 
 }

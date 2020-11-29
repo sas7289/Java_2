@@ -15,8 +15,9 @@ public class Server {
     private static int server_port;
 
     private ServerSocket serverSocket;
-    protected static DataOutputStream dataOutputStream;
-    protected static DataInputStream dataInputStream;
+    Socket clientSocket;
+/*    protected static DataOutputStream dataOutputStream;
+    protected static DataInputStream dataInputStream;*/
 
     private final int SERVER_PORT = 8189;
 
@@ -46,18 +47,15 @@ public class Server {
             System.out.println("Ошибка передачи данных");
             e.printStackTrace();
         }
-        Thread threadO = new Thread(new ThreadOut(dataOutputStream));
-        Thread threadI = new Thread(new ThreadIn(dataInputStream));
-        threadO.start();
-        threadI.start();
+        new ThreadIO(clientSocket);
     }
 
     private void connect() throws IOException {
         System.out.println("Ожидание подключения...");
-        Socket clientSocket = serverSocket.accept();
+        clientSocket = serverSocket.accept();
         System.out.println("Подключение установлено");
-        dataInputStream = new DataInputStream(clientSocket.getInputStream());
-        dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+/*        dataInputStream = new DataInputStream(clientSocket.getInputStream());
+        dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());*/
     }
 
 
