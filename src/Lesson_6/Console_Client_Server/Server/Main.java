@@ -14,6 +14,7 @@ public class Main {
                 e.printStackTrace();
             }
             Server server = new Server(serverSocket);
+            server.start();
         }
 
     }
