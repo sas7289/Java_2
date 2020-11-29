@@ -39,15 +39,7 @@ public class ThreadIO {
             try {
                 String message = dataInputStream.readUTF();
                 if (exit(message)) {
-                    try {
-                        socket.shutdownInput();
-                        socket.shutdownOutput();
-                        dataOutputStream.close();
-                        exitFlag = true;
-                        break;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    closeConnection();
                 }
                 showMessage(message);
             } catch (EOFException eofException) {
@@ -59,6 +51,16 @@ public class ThreadIO {
         System.out.println("Приём окончен");
     }
 
+    private void closeConnection() {
+        try {
+            socket.shutdownInput();
+            socket.shutdownOutput();
+            exitFlag = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showMessage(String message) {
         System.out.println(message);
     }
@@ -67,15 +69,9 @@ public class ThreadIO {
         while (!exitFlag) {
             String message = scanner.nextLine();
             if (exit(message)) {
-                try {
-                    getOutMessage(message);
-                    socket.shutdownInput();
-                    socket.shutdownOutput();
-                    exitFlag = true;
-                    break;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getOutMessage(message);
+                closeConnection();
+                break;
             }
             getOutMessage(message);
         }
